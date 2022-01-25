@@ -8,13 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "personaje")
 @Getter
 @Setter
-public class PersonajeEntity {
+public class Personaje {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
@@ -26,7 +25,7 @@ public class PersonajeEntity {
     private String historia;
 
     @ManyToMany(mappedBy = "personajes", cascade = CascadeType.ALL)
-    private List<PeliculaSerieEntity> pelicualas = new ArrayList<>();
+    private List<PeliculaSerie> pelicualas = new ArrayList<>();
 
 
 }

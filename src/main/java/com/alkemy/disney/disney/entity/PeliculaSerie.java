@@ -10,13 +10,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "pelicula_serie")
 @Getter
 @Setter
-public class PeliculaSerieEntity {
+public class PeliculaSerie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String imagen;
@@ -29,9 +28,9 @@ public class PeliculaSerieEntity {
 
     private Long clasificacion;//del 1 al 5
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "genero_id", insertable = false, updatable = false)
-    private GeneroEntity genero;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(insertable = false, updatable = false )
+    private Genero genero;
 
 
     @Column(name = "genero_id", nullable = false)
@@ -47,7 +46,7 @@ public class PeliculaSerieEntity {
             joinColumns = @JoinColumn(name = "pelicula_id"),
             inverseJoinColumns = @JoinColumn(name = "personaje_id")
     )
-    private Set<GeneroEntity> personajes =new HashSet<>();
+    private Set<Genero> personajes =new HashSet<>();
 
 
 }
