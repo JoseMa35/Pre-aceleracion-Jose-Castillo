@@ -2,6 +2,7 @@ package com.alkemy.disney.disney.controller;
 
 import com.alkemy.disney.disney.dto.GeneroDTO;
 import com.alkemy.disney.disney.service.GeneroService;
+import com.alkemy.disney.disney.service.impl.GeneroServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

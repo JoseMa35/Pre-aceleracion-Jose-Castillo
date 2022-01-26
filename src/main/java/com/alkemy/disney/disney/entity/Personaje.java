@@ -16,6 +16,8 @@ public class Personaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String imagen;
+
     private String nombre;
 
     private Long edad;

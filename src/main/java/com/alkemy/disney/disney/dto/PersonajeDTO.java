@@ -6,6 +6,7 @@ import lombok.Setter;
 @Setter
 public class PersonajeDTO {
     private Long id;
+    private String imagen;
     private String nombre;
     private Long edad;
     private Long peso;
