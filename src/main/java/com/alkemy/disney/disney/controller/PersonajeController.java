@@ -14,6 +14,12 @@ public class PersonajeController {
     @Autowired
     private PersonajeService personajeService;
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        this.personajeService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
     @GetMapping
     public ResponseEntity<List<PersonajeDTO>> getAll(){
         List<PersonajeDTO> personajes = personajeService.getAllPersonajes();

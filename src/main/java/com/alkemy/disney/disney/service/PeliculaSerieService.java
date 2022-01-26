@@ -8,4 +8,5 @@ public interface PeliculaSerieService {
 
     PeliculaSerieDTO save (PeliculaSerieDTO dto);
     List<PeliculaSerieDTO> getAllPeliculaSeries();
+    void delete(Long id);
 }

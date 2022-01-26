@@ -8,4 +8,5 @@ public interface PersonajeService {
 
     PersonajeDTO save(PersonajeDTO dto);
     List<PersonajeDTO> getAllPersonajes();
+    void delete(Long id);
 }

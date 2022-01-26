@@ -34,4 +34,8 @@ public class PeliculaSerieServiceImpl implements PeliculaSerieService {
         List<PeliculaSerieDTO> result = peliculaSerieMapper.peliculaSerieEntityList2DTOList(entities);
         return result;
     }
+
+    public void delete(Long id){
+        this.peliculaSerieRepository.deleteById(id);
+    }
 }

@@ -33,4 +33,8 @@ public class PersonajeServiceImpl implements PersonajeService {
 
         return result;
     }
+
+    public void delete(Long id){
+        this.personajeRepository.deleteById(id);
+    }
 }

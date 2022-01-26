@@ -17,6 +17,12 @@ public class PeliculaSerieController {
     @Autowired
     private PeliculaSerieService peliculaSerieService;
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        this.peliculaSerieService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
     @GetMapping
     public ResponseEntity<List<PeliculaSerieDTO>> getAll(){
         List<PeliculaSerieDTO> peliculaSeries = peliculaSerieService.getAllPeliculaSeries();

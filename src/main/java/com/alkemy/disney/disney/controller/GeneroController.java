@@ -17,6 +17,12 @@ public class GeneroController {
     @Autowired
     private GeneroService generoService;
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        this.generoService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
     @GetMapping
     public ResponseEntity<List<GeneroDTO>> getAll(){
         List<GeneroDTO> generos = generoService.getAllGeneros();
