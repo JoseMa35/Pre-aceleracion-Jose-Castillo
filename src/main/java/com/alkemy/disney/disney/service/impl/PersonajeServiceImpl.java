@@ -9,6 +9,8 @@ import com.alkemy.disney.disney.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonajeServiceImpl implements PersonajeService {
 
@@ -22,6 +24,13 @@ public class PersonajeServiceImpl implements PersonajeService {
         Personaje entity = personajeMapper.personajeDTO2Entity(dto);
         Personaje entitySaved = personajeRepository.save(entity);
         PersonajeDTO result = personajeMapper.personajeEntity2DTO(entitySaved);
+        return result;
+    }
+
+    public List<PersonajeDTO> getAllPersonajes() {
+        List<Personaje> entities = personajeRepository.findAll();
+        List<PersonajeDTO> result = personajeMapper.personajeEntityList2DTOList(entities);
+
         return result;
     }
 }

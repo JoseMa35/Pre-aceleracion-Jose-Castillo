@@ -1,8 +1,13 @@
 package com.alkemy.disney.disney.mapper;
 
+import com.alkemy.disney.disney.dto.GeneroDTO;
 import com.alkemy.disney.disney.dto.PeliculaSerieDTO;
+import com.alkemy.disney.disney.entity.Genero;
 import com.alkemy.disney.disney.entity.PeliculaSerie;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class PeliculaSerieMapper {
@@ -24,5 +29,13 @@ public class PeliculaSerieMapper {
         dto.setFechaCreacion(entity.getFechaCreacion());
         dto.setClasificacion(entity.getClasificacion());
         return dto;
+    }
+
+    public List<PeliculaSerieDTO> peliculaSerieEntityList2DTOList(List<PeliculaSerie> entities){
+        List<PeliculaSerieDTO> dtos = new ArrayList<>();
+        for (PeliculaSerie entity : entities){
+            dtos.add(this.peliculaSerieEntity2DTO(entity));
+        }
+        return dtos;
     }
 }

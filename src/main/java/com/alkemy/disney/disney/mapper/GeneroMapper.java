@@ -26,7 +26,6 @@ public class GeneroMapper {
 
         return dto;
     }
-
     public List<GeneroDTO> generoEntityList2DTOList(List<Genero> entities){
         List<GeneroDTO> dtos = new ArrayList<>();
         for (Genero entity : entities){

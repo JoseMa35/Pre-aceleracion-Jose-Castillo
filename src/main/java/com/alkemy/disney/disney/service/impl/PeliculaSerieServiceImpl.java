@@ -9,6 +9,8 @@ import com.alkemy.disney.disney.service.PeliculaSerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PeliculaSerieServiceImpl implements PeliculaSerieService {
 
@@ -24,6 +26,12 @@ public class PeliculaSerieServiceImpl implements PeliculaSerieService {
         PeliculaSerie entitySaved = peliculaSerieRepository.save(entity);
         PeliculaSerieDTO result = peliculaSerieMapper.peliculaSerieEntity2DTO(entitySaved);
         System.out.println("Guardar PeliculaSerie");
+        return result;
+    }
+
+    public List<PeliculaSerieDTO> getAllPeliculaSeries(){
+        List<PeliculaSerie> entities = peliculaSerieRepository.findAll();
+        List<PeliculaSerieDTO> result = peliculaSerieMapper.peliculaSerieEntityList2DTOList(entities);
         return result;
     }
 }
