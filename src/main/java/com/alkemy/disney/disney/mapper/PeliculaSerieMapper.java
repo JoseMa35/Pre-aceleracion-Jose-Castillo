@@ -16,4 +16,13 @@ public class PeliculaSerieMapper {
         peliculaSerieEntity.setClasificacion(dto.getClasificacion());
         return peliculaSerieEntity;
     }
+    public PeliculaSerieDTO peliculaSerieEntity2DTO(PeliculaSerie entity){
+        PeliculaSerieDTO dto = new PeliculaSerieDTO();
+        dto.setId(entity.getId());
+        dto.setImagen(entity.getImagen());
+        dto.setTitulo(entity.getTitulo());
+        dto.setFechaCreacion(entity.getFechaCreacion());
+        dto.setClasificacion(entity.getClasificacion());
+        return dto;
+    }
 }

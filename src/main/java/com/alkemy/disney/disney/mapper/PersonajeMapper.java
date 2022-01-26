@@ -18,4 +18,16 @@ public class PersonajeMapper {
         return personajeEntity;
     }
 
+    public PersonajeDTO personajeEntity2DTO(Personaje entity){
+        PersonajeDTO dto = new PersonajeDTO();
+        dto.setId(entity.getId());
+        dto.setImagen(entity.getImagen());
+        dto.setNombre(entity.getNombre());
+        dto.setEdad(entity.getEdad());
+        dto.setPeso(entity.getPeso());
+        dto.setHistoria(entity.getHistoria());
+
+        return dto;
+    }
+
 }
