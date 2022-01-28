@@ -8,7 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -52,7 +54,9 @@ public class PeliculaSerie {
             joinColumns = @JoinColumn(name = "pelicula_id"),
             inverseJoinColumns = @JoinColumn(name = "personaje_id")
     )
-    private Set<Genero> personajes =new HashSet<>();
+    private Set<Genero> generos =new HashSet<>();
 
+    @ManyToMany(mappedBy = "peliculaSeries", cascade = CascadeType.ALL)
+    public List<Genero> generoList= new ArrayList<>();
 
 }

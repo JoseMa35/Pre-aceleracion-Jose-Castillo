@@ -22,13 +22,13 @@ public class GeneroServiceImpl implements GeneroService {
     public GeneroDTO save(GeneroDTO dto){
         Genero entity = generoMapper.generoDTO2Entity(dto);
         Genero entitySaved =generoRepository.save(entity);
-        GeneroDTO result = generoMapper.generoEntity2DTO(entitySaved);
+        GeneroDTO result = generoMapper.generoEntity2DTO(entitySaved,true);
         return result;
     }
 
     public List<GeneroDTO> getAllGeneros() {
         List<Genero> entities = generoRepository.findAll();
-        List<GeneroDTO> result = generoMapper.generoEntityList2DTOList(entities);
+        List<GeneroDTO> result = generoMapper.generoEntityList2DTOList(entities,true);
         return result;
     }
 

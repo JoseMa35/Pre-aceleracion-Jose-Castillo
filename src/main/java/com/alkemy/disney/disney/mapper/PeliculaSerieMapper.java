@@ -4,6 +4,7 @@ import com.alkemy.disney.disney.dto.GeneroDTO;
 import com.alkemy.disney.disney.dto.PeliculaSerieDTO;
 import com.alkemy.disney.disney.entity.Genero;
 import com.alkemy.disney.disney.entity.PeliculaSerie;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ import java.util.List;
 
 @Component
 public class PeliculaSerieMapper {
+
+
+    @Autowired
+    private GeneroMapper generoMapper;
 
     public PeliculaSerie peliculaSerieDTO2Entity(PeliculaSerieDTO dto){
 
@@ -21,20 +26,24 @@ public class PeliculaSerieMapper {
         peliculaSerieEntity.setClasificacion(dto.getClasificacion());
         return peliculaSerieEntity;
     }
-    public PeliculaSerieDTO peliculaSerieEntity2DTO(PeliculaSerie entity){
+    public PeliculaSerieDTO peliculaSerieEntity2DTO(PeliculaSerie entity, boolean loadGeneros){
         PeliculaSerieDTO dto = new PeliculaSerieDTO();
         dto.setId(entity.getId());
         dto.setImagen(entity.getImagen());
         dto.setTitulo(entity.getTitulo());
         dto.setFechaCreacion(entity.getFechaCreacion());
         dto.setClasificacion(entity.getClasificacion());
+        if(loadGeneros){
+            List<GeneroDTO> generoDTOS = this.generoMapper.generoEntityList2DTOList(entity.getGeneroList(),false);
+            dto.setGeneros(generoDTOS);
+        }
         return dto;
     }
 
-    public List<PeliculaSerieDTO> peliculaSerieEntityList2DTOList(List<PeliculaSerie> entities){
+    public List<PeliculaSerieDTO> peliculaSerieEntityList2DTOList(List<PeliculaSerie> entities,boolean loadGeneros){
         List<PeliculaSerieDTO> dtos = new ArrayList<>();
         for (PeliculaSerie entity : entities){
-            dtos.add(this.peliculaSerieEntity2DTO(entity));
+            dtos.add(this.peliculaSerieEntity2DTO(entity,false));
         }
         return dtos;
     }

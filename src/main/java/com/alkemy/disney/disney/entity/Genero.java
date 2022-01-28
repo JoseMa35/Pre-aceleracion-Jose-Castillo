@@ -6,6 +6,8 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,5 +24,8 @@ public class Genero {
     private String imagen;
 
     private Boolean delete = Boolean.FALSE;
+
+    @ManyToMany(mappedBy = "generos", cascade = CascadeType.ALL)
+    public List<PeliculaSerie> peliculaSeries= new ArrayList<>();
 
 }
