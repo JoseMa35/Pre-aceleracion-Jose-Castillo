@@ -17,7 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @SQLDelete(sql = "UPDATE icon SET deleted = true WHERE id=?")
-@Where(clause = "deleted=false")
+@Where(clause = "inactivate=false")
 public class PeliculaSerie {
 
     @Id
@@ -28,7 +28,7 @@ public class PeliculaSerie {
 
     private String titulo;
 
-    private Boolean delete = Boolean.FALSE;
+    private Boolean inactivate = Boolean.FALSE;
 
     @Column(name = "fecha_creacion")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
@@ -36,27 +36,16 @@ public class PeliculaSerie {
 
     private Long clasificacion;//del 1 al 5
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(insertable = false, updatable = false )
-    private Genero genero;
-
-
-    @Column(name = "genero_id", nullable = false)
-    private Long generoId;
-
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
     @JoinTable(
-            name = "personaje_pelicula",
-            joinColumns = @JoinColumn(name = "pelicula_id"),
-            inverseJoinColumns = @JoinColumn(name = "personaje_id")
+            name = "pelicula_serie_genero",
+            joinColumns = @JoinColumn(name = "pelicula_serie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genero_id")
     )
     private Set<Genero> generos =new HashSet<>();
-
-    @ManyToMany(mappedBy = "peliculaSeries", cascade = CascadeType.ALL)
-    public List<Genero> generoList= new ArrayList<>();
 
 }

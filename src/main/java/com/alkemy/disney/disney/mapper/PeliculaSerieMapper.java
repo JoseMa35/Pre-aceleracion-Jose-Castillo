@@ -6,9 +6,11 @@ import com.alkemy.disney.disney.entity.Genero;
 import com.alkemy.disney.disney.entity.PeliculaSerie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class PeliculaSerieMapper {
@@ -33,8 +35,10 @@ public class PeliculaSerieMapper {
         dto.setTitulo(entity.getTitulo());
         dto.setFechaCreacion(entity.getFechaCreacion());
         dto.setClasificacion(entity.getClasificacion());
+
         if(loadGeneros){
-            List<GeneroDTO> generoDTOS = this.generoMapper.generoEntityList2DTOList(entity.getGeneroList(),false);
+
+            List<GeneroDTO> generoDTOS = this.generoMapper.generoEntityList2DTOList(entity.getGeneros().stream().collect(Collectors.toList()),false);
             dto.setGeneros(generoDTOS);
         }
         return dto;

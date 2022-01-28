@@ -30,7 +30,8 @@ public class GeneroMapper {
         dto.setNombre(entity.getNombre());
         if (loadPeliculaSeries){
             List<PeliculaSerieDTO> peliculaSerieDTOS = this.peliculaSerieMapper.peliculaSerieEntityList2DTOList(entity.getPeliculaSeries(),false);
-            dto.setPeliculaSeries(peliculaSerieDTOS);
+           dto.setPeliculaSeries(peliculaSerieDTOS);
+            //TODO
         }
         return dto;
     }

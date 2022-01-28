@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @SQLDelete(sql = "UPDATE icon SET deleted = true WHERE id=?")
-@Where(clause = "deleted=false")
+@Where(clause = "inactivate=false")
 public class Personaje {
 
     @Id
@@ -29,9 +29,6 @@ public class Personaje {
     private Long peso;
 
     private String historia;
-    private Boolean delete = Boolean.FALSE;
-
-    @ManyToMany(mappedBy = "personajes", cascade = CascadeType.ALL)
-    private List<PeliculaSerie> peliculaSeries = new ArrayList<>();
+    private Boolean inactivate = Boolean.FALSE;
 
 }
