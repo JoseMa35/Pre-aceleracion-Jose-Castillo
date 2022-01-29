@@ -2,6 +2,7 @@ package com.alkemy.disney.disney.service.impl;
 
 import com.alkemy.disney.disney.dto.PersonajeDTO;
 
+import com.alkemy.disney.disney.dto.PersonajeFiltersDTO;
 import com.alkemy.disney.disney.entity.Personaje;
 import com.alkemy.disney.disney.mapper.PersonajeMapper;
 import com.alkemy.disney.disney.repository.PersonajeRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PersonajeServiceImpl implements PersonajeService {
@@ -23,7 +25,7 @@ public class PersonajeServiceImpl implements PersonajeService {
     public PersonajeDTO save(PersonajeDTO dto){
         Personaje entity = personajeMapper.personajeDTO2Entity(dto);
         Personaje entitySaved = personajeRepository.save(entity);
-        PersonajeDTO result = personajeMapper.personajeEntity2DTO(entitySaved);
+        PersonajeDTO result = personajeMapper.personajeEntity2DTO(entitySaved,false);
         return result;
     }
 
@@ -33,6 +35,15 @@ public class PersonajeServiceImpl implements PersonajeService {
 
         return result;
     }
+
+/*
+    public List<PersonajeDTO> getByFilters(String nombre, Long edad, Set<Long> peliculas, String order){
+        PersonajeFiltersDTO filtersDTO = new PersonajeFiltersDTO(nombre,edad,peliculas,order);
+        List<Personaje> entities = this.personajeRepository.findAll(this.personajeSpecification.getByFilters(filtersDTO));
+        List<PersonajeDTO>dtos = this.personajeMapper.personajeEntityList2DTOList(entities,true);
+        return dtos;
+    }
+*/
 
     public void delete(Long id){
         this.personajeRepository.deleteById(id);

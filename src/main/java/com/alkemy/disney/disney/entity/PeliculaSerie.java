@@ -48,4 +48,16 @@ public class PeliculaSerie {
     )
     private Set<Genero> generos =new HashSet<>();
 
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(
+            name = "pelicula_serie_personaje",
+            joinColumns = @JoinColumn(name = "pelicula_serie_id"),
+            inverseJoinColumns = @JoinColumn(name = "personaje_id")
+    )
+    private Set<Personaje> personajes =new HashSet<>();
+
 }

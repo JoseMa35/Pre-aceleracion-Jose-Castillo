@@ -31,4 +31,8 @@ public class Personaje {
     private String historia;
     private Boolean inactivate = Boolean.FALSE;
 
+    @ManyToMany(mappedBy = "personajes", cascade = CascadeType.ALL)
+    public List<PeliculaSerie> peliculaSeries= new ArrayList<>();
+
+
 }
