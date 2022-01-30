@@ -11,11 +11,11 @@ import java.util.Set;
 public class PersonajeFiltersDTO {
 
     private String nombre;
-    private Long edad;
+    private String edad;
     private Set<Long> peliculaSeries;
     private String order;
 
-    public PersonajeFiltersDTO(String nombre, Long edad,Set<Long>peliculaSeries,String order){
+    public PersonajeFiltersDTO(String nombre, String edad, Set<Long>peliculaSeries, String order){
         this.nombre = nombre;
         this.edad = edad;
         this.peliculaSeries = peliculaSeries;

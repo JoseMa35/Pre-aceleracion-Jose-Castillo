@@ -42,7 +42,7 @@ public class PersonajeMapper {
 
         return dto;
     }
-    public List<PersonajeDTO> personajeEntityList2DTOList(List<Personaje> entities){
+    public List<PersonajeDTO> personajeEntityList2DTOList(List<Personaje> entities, boolean loadPeliculaSeries){
         List<PersonajeDTO> dtos = new ArrayList<>();
         for (Personaje entity : entities){
             dtos.add(this.personajeEntity2DTO(entity,false));

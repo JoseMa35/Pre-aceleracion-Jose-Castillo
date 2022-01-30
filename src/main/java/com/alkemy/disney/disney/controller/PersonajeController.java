@@ -21,7 +21,7 @@ public class PersonajeController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-/*    public ResponseEntity<List<PersonajeDTO>> getDetailsByFilters(
+   public ResponseEntity<List<PersonajeDTO>> getDetailsByFilters(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) String edad,
             @RequestParam(required = false) Set<Long> peliculas,
@@ -29,7 +29,7 @@ public class PersonajeController {
     ){
         List<PersonajeDTO> personajes = this.personajeService.getByFilters(nombre,edad,peliculas,order);
         return ResponseEntity.ok(personajes);
-    }*/
+    }
 
     @GetMapping
     public ResponseEntity<List<PersonajeDTO>> getAll(){

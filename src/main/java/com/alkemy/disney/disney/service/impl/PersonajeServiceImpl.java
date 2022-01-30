@@ -6,6 +6,7 @@ import com.alkemy.disney.disney.dto.PersonajeFiltersDTO;
 import com.alkemy.disney.disney.entity.Personaje;
 import com.alkemy.disney.disney.mapper.PersonajeMapper;
 import com.alkemy.disney.disney.repository.PersonajeRepository;
+import com.alkemy.disney.disney.repository.specification.PersonajeSpecification;
 import com.alkemy.disney.disney.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ public class PersonajeServiceImpl implements PersonajeService {
     @Autowired
     private PersonajeMapper personajeMapper;
 
+    private PersonajeSpecification personajeSpecification;
+
     @Autowired
     private PersonajeRepository personajeRepository;
 
@@ -31,21 +34,21 @@ public class PersonajeServiceImpl implements PersonajeService {
 
     public List<PersonajeDTO> getAllPersonajes() {
         List<Personaje> entities = personajeRepository.findAll();
-        List<PersonajeDTO> result = personajeMapper.personajeEntityList2DTOList(entities);
+        List<PersonajeDTO> result = personajeMapper.personajeEntityList2DTOList(entities,false);
 
         return result;
     }
-
-/*
-    public List<PersonajeDTO> getByFilters(String nombre, Long edad, Set<Long> peliculas, String order){
+    @Override
+    public List<PersonajeDTO> getByFilters(String nombre, String edad, Set<Long> peliculas, String order){
         PersonajeFiltersDTO filtersDTO = new PersonajeFiltersDTO(nombre,edad,peliculas,order);
         List<Personaje> entities = this.personajeRepository.findAll(this.personajeSpecification.getByFilters(filtersDTO));
         List<PersonajeDTO>dtos = this.personajeMapper.personajeEntityList2DTOList(entities,true);
         return dtos;
     }
-*/
 
     public void delete(Long id){
         this.personajeRepository.deleteById(id);
     }
+
+
 }
