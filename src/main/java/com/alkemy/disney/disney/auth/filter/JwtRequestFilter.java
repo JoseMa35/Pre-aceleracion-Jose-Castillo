@@ -3,12 +3,14 @@ package com.alkemy.disney.disney.auth.filter;
 import com.alkemy.disney.disney.auth.service.JwtUtils;
 import com.alkemy.disney.disney.auth.service.UserDetailCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -28,8 +31,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        throws ServletException, IOException{
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException
+        {
 
             final String authorizationHeader = request.getHeader("Authorization");
 
@@ -47,7 +51,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 if(jwtUtils.validateToken(jwt,userDetails)){
                     UsernamePasswordAuthenticationToken authReq =
                             new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword());
-                    Authentication auth = authenticationManager.setAuthentication(authReq);
+                            //TODO cambie setAuthentication por authenticate en authmanager
+                    Authentication auth = authenticationManager.authenticate(authReq);
                     //set auth in context
                     SecurityContextHolder.getContext().setAuthentication(auth);
 
@@ -57,4 +62,4 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         }
     }
-}
+
