@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -39,7 +41,8 @@ public class UserAuthController{
 
     }
     @PostMapping("/singup")//TODO "@valid como primera anotacion de singup
-    public ResponseEntity<Object> singUp(@RequestBody UserDTO user) throws Exception{
+    //public ResponseEntity<Object> singUp(@RequestBody UserDTO user) throws Exception{
+    public ResponseEntity<AuthenticationResponse> singUp(@Valid @RequestBody UserDTO user) throws Exception{
         this.userDetailCustomService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();}
 

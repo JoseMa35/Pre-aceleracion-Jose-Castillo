@@ -3,6 +3,7 @@ package com.alkemy.disney.disney.auth.service;
 import com.alkemy.disney.disney.auth.dto.UserDTO;
 import com.alkemy.disney.disney.auth.repository.UserRepository;
 import com.alkemy.disney.disney.auth.entity.UserEntity;
+import com.alkemy.disney.disney.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,8 +19,8 @@ public class UserDetailCustomService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-    //@Autowired
-    //private EmailService emailService;
+    @Autowired
+    private EmailService emailService;
 
 
     @Override
@@ -36,10 +37,10 @@ public class UserDetailCustomService implements UserDetailsService {
         userEntity.setUsername(userDTO.getUsername());
         userEntity.setPassword(userDTO.getPassword());
         userEntity = this.userRepository.save(userEntity);
-        //TODO:Activar el if por el emailService issue.arriba en la linea 22 tambien
-        //if (userEntity != null){
-           // emailService.sendWelcomeEmailTo(userEntity.getUsername());
-        //}
+
+        if (userEntity != null){
+            emailService.sendWelcomeEmailTo(userEntity.getUsername());
+        }
         return userEntity != null;
     }
 }
