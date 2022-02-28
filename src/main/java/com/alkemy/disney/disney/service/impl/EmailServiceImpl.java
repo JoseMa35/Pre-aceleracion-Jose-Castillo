@@ -22,9 +22,9 @@ public class EmailServiceImpl implements EmailService {
 
     @Autowired
     private Environment env;
-    @Value("${(alkemy.disney_challenge.email.sender)}")
+    @Value("${alkemy.disney_challenge.email.sender}")
     private String emailSender;
-    @Value("${(alkemy.disney_challenge.email.sender)}")
+    @Value("${alkemy.disney_challenge.email.enabled}")
     private boolean enabled;
 
     @Override

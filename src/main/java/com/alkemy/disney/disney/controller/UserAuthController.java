@@ -1,17 +1,16 @@
-package com.alkemy.disney.disney.auth.controller;
+package com.alkemy.disney.disney.controller;
 
-import com.alkemy.disney.disney.auth.dto.AuthenticationRequest;
-import com.alkemy.disney.disney.auth.dto.AuthenticationResponse;
-import com.alkemy.disney.disney.auth.dto.UserDTO;
-import com.alkemy.disney.disney.auth.service.JwtUtils;
-import com.alkemy.disney.disney.auth.service.UserDetailCustomService;
+import com.alkemy.disney.disney.dto.auth.AuthenticationRequest;
+import com.alkemy.disney.disney.dto.auth.AuthenticationResponse;
+import com.alkemy.disney.disney.dto.auth.UserDTO;
+import com.alkemy.disney.disney.service.JwtUtils;
+import com.alkemy.disney.disney.service.UserDetailCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;

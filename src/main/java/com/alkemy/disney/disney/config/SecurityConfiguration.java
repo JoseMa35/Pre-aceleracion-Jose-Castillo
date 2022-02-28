@@ -1,12 +1,9 @@
-package com.alkemy.disney.disney.auth.config;
+package com.alkemy.disney.disney.config;
 
-import com.alkemy.disney.disney.auth.filter.JwtRequestFilter;
-import com.alkemy.disney.disney.auth.service.UserDetailCustomService;
+import com.alkemy.disney.disney.config.filter.JwtRequestFilter;
+import com.alkemy.disney.disney.service.UserDetailCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,8 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 
 @EnableWebSecurity
