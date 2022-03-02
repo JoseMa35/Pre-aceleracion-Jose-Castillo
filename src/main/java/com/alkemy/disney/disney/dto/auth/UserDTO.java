@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 @Data
 public class UserDTO {
-    @Email
+    @Email(regexp = ".+@.+\\..+")
     private String username;
     @Size(min = 8)
     private String password;

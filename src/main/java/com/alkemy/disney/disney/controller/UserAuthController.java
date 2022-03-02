@@ -42,7 +42,6 @@ public class UserAuthController{
         this.userDetailCustomService = userDetailCustomService;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
-
     }
 
     @PostMapping(value = "/signup")                                //TODO @Validated por @NotBlank
