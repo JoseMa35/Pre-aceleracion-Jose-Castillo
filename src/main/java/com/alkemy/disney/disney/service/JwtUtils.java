@@ -29,6 +29,9 @@ public class JwtUtils {
     private Claims extractAllClaims(String token){
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
     }
+
+    private Boolean isTokenExpired(String token){ return extractExpiration(token).before(new Date());}
+
     public String generateToken(UserDetails userDetails){
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userDetails.getUsername());
@@ -37,18 +40,13 @@ public class JwtUtils {
     private String createToken(Map<String, Object> claims, String subject){
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
-
+                .setExpiration(new Date(System.currentTimeMillis() * 1000 * 60 * 60 * 10))
+                .signWith(SignatureAlgorithm.HS256,SECRET_KEY).compact();
     }
 
-    private Boolean isTokenExpired(String token){ return extractExpiration(token).before(new Date());}
-
-    public Boolean validateToken(String token, UserDetails userDetails){
+      public Boolean validateToken(String token, UserDetails userDetails){
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-
-
-}
+    }

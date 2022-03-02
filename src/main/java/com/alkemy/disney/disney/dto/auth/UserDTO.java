@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 @Data
 public class UserDTO {
-    @Email(message = "Username must be an email")
+    @Email
     private String username;
     @Size(min = 8)
     private String password;

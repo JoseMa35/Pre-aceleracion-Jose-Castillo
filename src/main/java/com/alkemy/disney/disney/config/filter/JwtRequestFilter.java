@@ -34,11 +34,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         {
 
             final String authorizationHeader = request.getHeader("Authorization");
-
             String username = null;
             String jwt  = null;
 
-            if (username != null && authorizationHeader.startsWith("Bearer ") ){
+            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ") ){
                 jwt = authorizationHeader.substring(7);
                 username = jwtUtils.extractUsername(jwt);
             }
@@ -51,11 +50,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                             new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword());
                             //TODO cambie setAuthentication por authenticate en authmanager
                     Authentication auth = authenticationManager.authenticate(authReq);
-                    //set auth in context
                     SecurityContextHolder.getContext().setAuthentication(auth);
-
                 }
-
             }
             filterChain.doFilter(request, response);
         }

@@ -35,6 +35,11 @@ public class UserEntity implements UserDetails {
     public void setId(Long id){ this.id = id;}
 
     @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
     public String getUsername(){ return username;}
 
     @Override
@@ -53,19 +58,13 @@ public class UserEntity implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() {
-        return false;
-    }
+    public boolean isEnabled() { return false; }
+
 
     public void setUsername(String username){this.username = username;}
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
     public String getPassword(){ return password;}
+
     public void setPassword(String password){this.password = password;}
 
 }
